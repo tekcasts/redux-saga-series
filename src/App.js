@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Route, Switch, NavLink } from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import VaccineSagaPage from "./containers/vaccineSaga";
+import NotFoundPage from "./presentation/NotFound";
+
+
+const App = () => {
+
+    let routes =
+        <Switch>
+            <Route path="/" exact component={VaccineSagaPage} />
+            <Route path="*" component={NotFoundPage} />
+        </Switch>
+
+    return (
+        <>
+            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div className="container-fluid">
+                    <NavLink to="/" className="navbar-brand"> Tekcasts - Redux Saga</NavLink>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li className="nav-item">
+                                <NavLink to="/" exact className="nav-link"> Vaccine Saga</NavLink>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            {routes}
+        </>
+    );
+};
 
 export default App;
+
+
+
+
+
